@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/app/lib/utils";
 
@@ -14,7 +15,7 @@ import {
 } from "@/app/components/ui/card";
 import { Separator } from "@/app/components/ui/separator";
 
-import PostUser from "@/app/components/post/post-user";
+import PostUser from "@/app/components/post-user";
 import DeletePostButton from "@/app/components/post/delete-post-button";
 import PostTechs from "@/app/components/post-techs";
 import PostDeploy from "@/app/components/post/post-deploy";
@@ -28,12 +29,15 @@ interface PostItemProps {
   post: Prisma.PostGetPayload<{
     include: {
       user: true;
+      comments: true;
     };
   }>;
 }
 
 const PostItem = ({ post }: PostItemProps) => {
   const { data: session } = useSession();
+
+  const pathname = usePathname();
 
   return (
     <Card>
@@ -51,7 +55,12 @@ const PostItem = ({ post }: PostItemProps) => {
       <CardContent className={cn("space-y-1.5")}>
         <CardTitle className={cn("px-5")}>{post.project_name}</CardTitle>
 
-        <CardDescription className={cn("line-clamp-2 px-5")}>
+        <CardDescription
+          className={cn(
+            "px-5",
+            pathname === `/comment/${post.id}` ? "" : "line-clamp-2",
+          )}
+        >
           {post.description}
         </CardDescription>
 
@@ -63,13 +72,13 @@ const PostItem = ({ post }: PostItemProps) => {
       <CardFooter className={cn("justify-between px-5 pt-1.5")}>
         <div className="flex items-center gap-5">
           <LikeButton />
-          <CommentButton id="123" />
+          <CommentButton id={post.id} comments={post.comments.length} />
         </div>
 
         <ShareButton />
       </CardFooter>
 
-      <div className="px-5 py-2.5">
+      <div className="px-5 pt-2.5">
         <Separator />
       </div>
     </Card>

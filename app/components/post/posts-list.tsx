@@ -6,6 +6,7 @@ interface Postslist {
   posts: Prisma.PostGetPayload<{
     include: {
       user: true;
+      comments: true;
     };
   }>[];
 }

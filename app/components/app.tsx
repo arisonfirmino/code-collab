@@ -11,6 +11,7 @@ interface AppProps {
   posts: Prisma.PostGetPayload<{
     include: {
       user: true;
+      comments: true;
     };
   }>[];
 }
