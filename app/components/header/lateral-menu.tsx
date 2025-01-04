@@ -19,9 +19,9 @@ const LateralMenu = ({ posts }: { posts: number }) => {
       <div className="space-y-1.5 text-sm">
         <Count type="posts">{posts}</Count>
 
-        <Count type="stars">18</Count>
+        <Count type="stars">{18}</Count>
 
-        <Count type="comments">7</Count>
+        <Count type="comments">{7}</Count>
       </div>
 
       <Separator />

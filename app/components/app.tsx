@@ -25,7 +25,7 @@ const App = ({ posts }: AppProps) => {
   return (
     <>
       <div className="px-5 pt-5">
-        <Header posts={posts.length} search={search} onSearch={setSearch} />
+        <Header search={search} onSearch={setSearch} />
       </div>
 
       <div className="flex items-center gap-5 p-5">

@@ -21,6 +21,12 @@ export const authOptions: AuthOptions = {
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
+
+        const postCount = await db.post.count({
+          where: { userId: user.id },
+        });
+
+        session.user.postCount = postCount;
       }
       return session;
     },

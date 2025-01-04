@@ -1,7 +1,7 @@
 import { BookMarkedIcon, MessageCircleMoreIcon, StarIcon } from "lucide-react";
 
 interface CountProps {
-  children: React.ReactNode;
+  children: number;
   type: "posts" | "stars" | "comments";
 }
 
@@ -19,7 +19,8 @@ const Count = ({ children, type }: CountProps) => {
       )}
 
       <p className="lowercase">
-        {children} {type === "posts" && "Publicações"}{" "}
+        {children}{" "}
+        {type === "posts" && children < 2 ? "Publicação" : "Publicações"}{" "}
         {type === "stars" && "Estrelas"} {type === "comments" && "Comentários"}
       </p>
     </div>

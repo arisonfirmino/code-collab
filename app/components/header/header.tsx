@@ -27,12 +27,11 @@ import NewPostButton from "@/app/components/header/new-post-button";
 import { UserIcon } from "lucide-react";
 
 interface HeaderProps {
-  posts: number;
   search: string;
   onSearch: (value: string) => void;
 }
 
-const Header = ({ posts, search, onSearch }: HeaderProps) => {
+const Header = ({ search, onSearch }: HeaderProps) => {
   const { data: session } = useSession();
 
   return (
@@ -63,7 +62,11 @@ const Header = ({ posts, search, onSearch }: HeaderProps) => {
             <SheetDescription>Lateral Menu</SheetDescription>
           </VisuallyHidden>
 
-          {session ? <LateralMenu posts={posts} /> : <LoginSession />}
+          {session ? (
+            <LateralMenu posts={session.user.postCount} />
+          ) : (
+            <LoginSession />
+          )}
         </SheetContent>
       </Sheet>
 
