@@ -12,17 +12,27 @@ import { Separator } from "@/app/components/ui/separator";
 
 import PostUser from "@/app/components/post/post-user";
 import DeletePostButton from "@/app/components/post/delete-post-button";
-import PostTechs from "@/app/components/post/post-techs";
+import PostTechs from "@/app/components/post-techs";
 import PostDeploy from "@/app/components/post/post-deploy";
 import LikeButton from "@/app/components/post/like-button";
 import CommentButton from "@/app/components/post/comment-button";
 import ShareButton from "@/app/components/post/share-button";
 
-const PostItem = () => {
+import { Prisma } from "@prisma/client";
+
+interface PostItemProps {
+  post: Prisma.PostGetPayload<{
+    include: {
+      user: true;
+    };
+  }>;
+}
+
+const PostItem = ({ post }: PostItemProps) => {
   return (
     <Card>
       <CardHeader className={cn("justify-between")}>
-        <PostUser />
+        <PostUser user={post.user} created_at={post.created_at} />
         <DeletePostButton />
       </CardHeader>
 
@@ -31,18 +41,15 @@ const PostItem = () => {
       </div>
 
       <CardContent className={cn("space-y-1.5")}>
-        <CardTitle className={cn("px-5")}>Lorem ipsum</CardTitle>
+        <CardTitle className={cn("px-5")}>{post.project_name}</CardTitle>
 
         <CardDescription className={cn("line-clamp-2 px-5")}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          atque quisquam, facere harum culpa quas ut ratione. Cumque tempora
-          perspiciatis quia pariatur, rem delectus ab voluptas ex nam
-          dignissimos? Voluptatibus.
+          {post.description}
         </CardDescription>
 
-        <PostTechs />
+        <PostTechs topics={post.techs} />
 
-        <PostDeploy />
+        <PostDeploy deploy={post.deploy} />
       </CardContent>
 
       <CardFooter className={cn("justify-between px-5 pt-1.5")}>

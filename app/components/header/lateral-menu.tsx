@@ -9,7 +9,7 @@ import SignOutButton from "@/app/components/header/signout-button";
 
 import Link from "next/link";
 
-const LateralMenu = () => {
+const LateralMenu = ({ posts }: { posts: number }) => {
   return (
     <div className="relative h-full space-y-5">
       <UserInfo />
@@ -17,7 +17,7 @@ const LateralMenu = () => {
       <Separator />
 
       <div className="space-y-1.5 text-sm">
-        <Count type="posts">3</Count>
+        <Count type="posts">{posts}</Count>
 
         <Count type="stars">18</Count>
 

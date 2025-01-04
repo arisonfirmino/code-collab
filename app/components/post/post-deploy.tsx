@@ -4,12 +4,14 @@ import { Button } from "@/app/components/ui/button";
 
 import { SquareArrowOutUpRightIcon } from "lucide-react";
 
-const PostDeploy = () => {
+import { formatUrl } from "@/app/helpers/formatUrl";
+
+const PostDeploy = ({ deploy }: { deploy: string }) => {
   return (
     <Button size="link" variant="link" asChild className={cn("px-5")}>
-      <a href="#" target="_blank" rel="noopener noreferrer">
+      <a href={deploy} target="_blank" rel="noopener noreferrer">
         <SquareArrowOutUpRightIcon size={14} />
-        lorem-ipsum.vercel.app
+        {formatUrl(deploy)}
       </a>
     </Button>
   );

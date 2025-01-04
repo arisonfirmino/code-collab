@@ -4,16 +4,27 @@ import {
   AvatarImage,
 } from "@/app/components/ui/avatar";
 
-const PostUser = () => {
+import { formatDate } from "@/app/helpers/formatDate";
+
+import { User } from "@prisma/client";
+
+interface PostUserProps {
+  user: User;
+  created_at: Date;
+}
+
+const PostUser = ({ user, created_at }: PostUserProps) => {
   return (
     <div className="flex items-center gap-3">
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarImage src={user.image ?? ""} />
+        <AvatarFallback>{user.name}</AvatarFallback>
       </Avatar>
       <div>
-        <p className="font-medium">Jhon Doe</p>
-        <p className="text-xs text-muted-foreground">3 jan, 2025</p>
+        <p className="font-medium">{user.name}</p>
+        <p className="text-xs text-muted-foreground">
+          {formatDate(created_at)}
+        </p>
       </div>
     </div>
   );
