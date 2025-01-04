@@ -51,7 +51,10 @@ const CommentPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         <hr className="w-full border" />
       </div>
 
-      <CommentsList comments={post.comments} />
+      <CommentsList
+        comments={post.comments}
+        postUserEmail={post.user.email ?? ""}
+      />
 
       {session && <CommentForm user={post.user.name ?? ""} postId={post.id} />}
     </main>

@@ -44,3 +44,23 @@ export const addComment = async ({
 
   revalidatePath("/");
 };
+
+export const deleteComment = async ({ id }: { id: string }) => {
+  if (!id) return { error: "ID do comentário não fornecido." };
+
+  const comment = await db.comment.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!comment) return { error: "Comentário não encontrado." };
+
+  await db.comment.delete({
+    where: {
+      id,
+    },
+  });
+
+  revalidatePath("/");
+};

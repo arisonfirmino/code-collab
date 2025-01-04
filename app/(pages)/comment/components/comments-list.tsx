@@ -8,14 +8,15 @@ interface CommentsList {
       user: true;
     };
   }>[];
+  postUserEmail: string;
 }
 
-const CommentsList = ({ comments }: CommentsList) => {
+const CommentsList = ({ comments, postUserEmail }: CommentsList) => {
   return (
     <ul className="space-y-5">
       {comments.map((comment) => (
         <li key={comment.id}>
-          <CommentItem comment={comment} />
+          <CommentItem comment={comment} postUserEmail={postUserEmail} />
         </li>
       ))}
     </ul>
