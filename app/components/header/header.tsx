@@ -26,7 +26,13 @@ import NewPostButton from "@/app/components/header/new-post-button";
 
 import { UserIcon } from "lucide-react";
 
-const Header = ({ posts }: { posts: number }) => {
+interface HeaderProps {
+  posts: number;
+  search: string;
+  onSearch: (value: string) => void;
+}
+
+const Header = ({ posts, search, onSearch }: HeaderProps) => {
   const { data: session } = useSession();
 
   return (
@@ -61,7 +67,7 @@ const Header = ({ posts }: { posts: number }) => {
         </SheetContent>
       </Sheet>
 
-      <Search />
+      <Search search={search} onSearch={onSearch} />
 
       <NewPostButton />
     </header>
