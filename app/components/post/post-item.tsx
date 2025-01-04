@@ -1,3 +1,7 @@
+"use client";
+
+import { useSession } from "next-auth/react";
+
 import { cn } from "@/app/lib/utils";
 
 import {
@@ -29,11 +33,17 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
+  const { data: session } = useSession();
+
+  if (!session) return null;
+
   return (
     <Card>
       <CardHeader className={cn("justify-between")}>
         <PostUser user={post.user} created_at={post.created_at} />
-        <DeletePostButton />
+        {session.user.email === post.user.email && (
+          <DeletePostButton id={post.id} />
+        )}
       </CardHeader>
 
       <div className="px-5 py-2.5">
@@ -47,7 +57,7 @@ const PostItem = ({ post }: PostItemProps) => {
           {post.description}
         </CardDescription>
 
-        <PostTechs topics={post.techs} />
+        {post.techs.length > 0 && <PostTechs topics={post.techs} />}
 
         <PostDeploy deploy={post.deploy} />
       </CardContent>
