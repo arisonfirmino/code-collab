@@ -30,6 +30,7 @@ interface PostItemProps {
     include: {
       user: true;
       comments: true;
+      favorites: true;
     };
   }>;
 }
@@ -71,7 +72,7 @@ const PostItem = ({ post }: PostItemProps) => {
 
       <CardFooter className={cn("justify-between px-5 pt-1.5")}>
         <div className="flex items-center gap-5">
-          <LikeButton />
+          <LikeButton postId={post.id} favorites={post.favorites.length} />
           <CommentButton id={post.id} comments={post.comments.length} />
         </div>
 

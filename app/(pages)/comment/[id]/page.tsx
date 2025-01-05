@@ -24,6 +24,7 @@ const CommentPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           user: true,
         },
       },
+      favorites: true,
     },
   });
 

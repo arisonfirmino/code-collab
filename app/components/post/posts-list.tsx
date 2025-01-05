@@ -7,6 +7,7 @@ interface Postslist {
     include: {
       user: true;
       comments: true;
+      favorites: true;
     };
   }>[];
 }

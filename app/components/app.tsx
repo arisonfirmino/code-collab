@@ -12,6 +12,7 @@ interface AppProps {
     include: {
       user: true;
       comments: true;
+      favorites: true;
     };
   }>[];
 }

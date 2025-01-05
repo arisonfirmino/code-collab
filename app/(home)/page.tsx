@@ -10,6 +10,7 @@ const Home = async () => {
     include: {
       user: true,
       comments: true,
+      favorites: true,
     },
   });
 
