@@ -19,7 +19,7 @@ import PostUser from "@/app/components/post-user";
 import DeletePostButton from "@/app/components/post/delete-post-button";
 import PostTechs from "@/app/components/post-techs";
 import PostDeploy from "@/app/components/post/post-deploy";
-import LikeButton from "@/app/components/post/like-button";
+import FavoriteButton from "@/app/components/post/favorite-button";
 import CommentButton from "@/app/components/post/comment-button";
 import ShareButton from "@/app/components/post/share-button";
 
@@ -72,7 +72,7 @@ const PostItem = ({ post }: PostItemProps) => {
 
       <CardFooter className={cn("justify-between px-5 pt-1.5")}>
         <div className="flex items-center gap-5">
-          <LikeButton postId={post.id} favorites={post.favorites.length} />
+          <FavoriteButton postId={post.id} favorites={post.favorites.length} />
           <CommentButton id={post.id} comments={post.comments.length} />
         </div>
 

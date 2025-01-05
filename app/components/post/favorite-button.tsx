@@ -9,19 +9,19 @@ import { isPostFavorited } from "@/app/helpers/isPostFavorited";
 
 import { addFavorite } from "@/app/acions/favorite";
 
-interface LikeButtonProps {
+interface FavoriteButtonProps {
   postId: string;
   favorites: number;
 }
 
-const LikeButton = ({ postId, favorites }: LikeButtonProps) => {
+const FavoriteButton = ({ postId, favorites }: FavoriteButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
 
   const { data: session } = useSession();
 
   useEffect(() => {
-    const checkIfFavorited = async () => {
+    const fetchFavoriteStatus = async () => {
       if (!session) return;
       const isFavorite = await isPostFavorited({
         userId: session.user.id,
@@ -31,10 +31,10 @@ const LikeButton = ({ postId, favorites }: LikeButtonProps) => {
       setIsFavorited(isFavorite);
     };
 
-    checkIfFavorited();
+    fetchFavoriteStatus();
   }, [postId, session]);
 
-  const handleAddFavorite = async () => {
+  const toggleFavorite = async () => {
     if (!session) return;
 
     setIsLoading(true);
@@ -46,7 +46,7 @@ const LikeButton = ({ postId, favorites }: LikeButtonProps) => {
   };
 
   return (
-    <button onClick={handleAddFavorite} className="flex items-center gap-1.5">
+    <button onClick={toggleFavorite} className="flex items-center gap-1.5">
       {isLoading ? (
         <LoaderCircleIcon
           size={16}
@@ -67,4 +67,4 @@ const LikeButton = ({ postId, favorites }: LikeButtonProps) => {
   );
 };
 
-export default LikeButton;
+export default FavoriteButton;
