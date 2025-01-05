@@ -20,6 +20,9 @@ const CommentPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     include: {
       user: true,
       comments: {
+        orderBy: {
+          created_at: "desc",
+        },
         include: {
           user: true,
         },
