@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,11 +14,10 @@ import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Button } from "@/app/components/ui/button";
 
-import PostTechs from "@/app/components/post-techs";
-
 import { ArrowUpIcon, LoaderCircleIcon, MoveRightIcon } from "lucide-react";
+
 import { createNewPost } from "@/app/acions/post";
-import { useRouter } from "next/navigation";
+import TopicsList from "./topics-list";
 
 const schema = yup.object({
   projectName: yup
@@ -74,6 +74,12 @@ const NewPostForm = () => {
     });
 
     setNewTopic("");
+  };
+
+  const removeTopic = (topicToRemove: string) => {
+    setTopics((prevTopics) =>
+      prevTopics.filter((topic) => topic !== topicToRemove),
+    );
   };
 
   const onSubmit = async (data: FormData) => {
@@ -166,7 +172,9 @@ const NewPostForm = () => {
         </Button>
       </div>
 
-      {topics.length > 0 && <PostTechs topics={topics} />}
+      {topics.length > 0 && (
+        <TopicsList topics={topics} onRemoveTopic={removeTopic} />
+      )}
 
       <div className="px-5">
         <Button

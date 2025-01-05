@@ -17,7 +17,7 @@ import { Separator } from "@/app/components/ui/separator";
 
 import PostUser from "@/app/components/post-user";
 import DeletePostButton from "@/app/components/post/delete-post-button";
-import PostTechs from "@/app/components/post-techs";
+import PostTechs from "@/app/components/post/post-techs";
 import PostDeploy from "@/app/components/post/post-deploy";
 import FavoriteButton from "@/app/components/post/favorite-button";
 import CommentButton from "@/app/components/post/comment-button";
