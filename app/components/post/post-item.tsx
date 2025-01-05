@@ -17,7 +17,7 @@ import { Separator } from "@/app/components/ui/separator";
 
 import PostUser from "@/app/components/post-user";
 import DeletePostButton from "@/app/components/post/delete-post-button";
-import PostTechs from "@/app/components/post/post-techs";
+import PostTopics from "@/app/components/post/post-topics";
 import PostDeploy from "@/app/components/post/post-deploy";
 import FavoriteButton from "@/app/components/post/favorite-button";
 import CommentButton from "@/app/components/post/comment-button";
@@ -65,7 +65,7 @@ const PostItem = ({ post }: PostItemProps) => {
           {post.description}
         </CardDescription>
 
-        {post.techs.length > 0 && <PostTechs topics={post.techs} />}
+        {post.topics.length > 0 && <PostTopics topics={post.topics} />}
 
         <PostDeploy deploy={post.deploy} />
       </CardContent>

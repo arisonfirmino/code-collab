@@ -37,7 +37,7 @@ export const createNewPost = async ({
       project_name: projectName,
       description,
       deploy,
-      techs: topics,
+      topics,
     },
   });
 
