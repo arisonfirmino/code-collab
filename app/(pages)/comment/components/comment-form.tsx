@@ -57,7 +57,7 @@ const CommentForm = ({ user, postId }: CommentFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="fixed bottom-0 left-0 z-10 w-full space-y-2 bg-background p-5"
+      className="fixed bottom-0 left-0 z-10 w-full max-w-xl space-y-2 bg-background p-5 md:left-1/2 md:-translate-x-1/2 md:transform"
     >
       <div className="flex items-center gap-5">
         <Textarea

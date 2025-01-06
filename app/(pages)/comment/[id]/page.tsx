@@ -34,7 +34,7 @@ const CommentPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!post) redirect("/");
 
   return (
-    <main className={`space-y-5 ${session ? "pb-24" : "pb-5"}`}>
+    <div className={`space-y-5 ${session ? "pb-24" : "pb-5"}`}>
       <div className="px-5 pt-5">
         <BackButton />
       </div>
@@ -61,7 +61,7 @@ const CommentPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       />
 
       {session && <CommentForm user={post.user.name ?? ""} postId={post.id} />}
-    </main>
+    </div>
   );
 };
 

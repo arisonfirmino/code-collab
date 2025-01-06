@@ -40,7 +40,7 @@ const DeleteCommentButton = ({ id }: { id: string }) => {
           )}
         </Button>
       </DialogTrigger>
-      <DialogContent className={cn("max-w-[80%] pt-12")}>
+      <DialogContent className={cn("max-w-[80%] pt-12 md:max-w-xl")}>
         <DialogHeader>
           <DialogTitle>Tem certeza que deseja prosseguir?</DialogTitle>
 

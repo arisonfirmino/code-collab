@@ -3,7 +3,7 @@ import NewPostForm from "@/app/(pages)/new-post/components/new-post-form";
 
 const NewPostPage = () => {
   return (
-    <main className="space-y-5">
+    <div className="space-y-5">
       <div className="px-5 pt-5">
         <BackButton />
       </div>
@@ -15,7 +15,7 @@ const NewPostPage = () => {
       </div>
 
       <NewPostForm />
-    </main>
+    </div>
   );
 };
 
